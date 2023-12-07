@@ -40,7 +40,7 @@ font_size = 24
 [sub_resource type="LabelSettings" id="LabelSettings_rj0dr"]
 font_size = 28
 
-[node name="UI" type="MarginContainer" node_paths=PackedStringArray("token_name_label", "token_details_label", "name_field", "quantity_field", "details_field", "add_button", "draw_button", "remove_temp_button", "remove_perm_button", "shuffle_back_button", "end_round_button", "token_list")]
+[node name="UI" type="MarginContainer" node_paths=PackedStringArray("token_name_label", "token_details_label", "name_field", "quantity_field", "details_field", "add_button", "draw_button", "remove_temp_button", "remove_perm_button", "shuffle_back_button", "end_round_button", "token_list", "acted_list")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -64,6 +64,7 @@ remove_perm_button = NodePath("Mainframe/C2 - Operations/Remove Perm")
 shuffle_back_button = NodePath("Mainframe/C2 - Operations/Shuffle")
 end_round_button = NodePath("Mainframe/C2 - Operations/End Round")
 token_list = NodePath("Mainframe/C3 - List/Panel/Margin/VBox/Token List")
+acted_list = NodePath("Mainframe/C2 - Operations/Panel/Margin/VBox/Acted List")
 
 [node name="Mainframe" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -206,6 +207,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
+[node name="HSeparator2" type="Control" parent="Mainframe/C2 - Operations"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
 [node name="Draw" type="Button" parent="Mainframe/C2 - Operations"]
 layout_mode = 2
 text = "Draw Token"
@@ -223,12 +228,37 @@ layout_mode = 2
 text = "Shuffle"
 
 [node name="HSeparator" type="Control" parent="Mainframe/C2 - Operations"]
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 
 [node name="End Round" type="Button" parent="Mainframe/C2 - Operations"]
 layout_mode = 2
 text = "End the Round"
+
+[node name="Panel" type="PanelContainer" parent="Mainframe/C2 - Operations"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Margin" type="MarginContainer" parent="Mainframe/C2 - Operations/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="Mainframe/C2 - Operations/Panel/Margin"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Mainframe/C2 - Operations/Panel/Margin/VBox"]
+layout_mode = 2
+text = "Acted"
+
+[node name="HSeparator" type="HSeparator" parent="Mainframe/C2 - Operations/Panel/Margin/VBox"]
+layout_mode = 2
+
+[node name="Acted List" type="ItemList" parent="Mainframe/C2 - Operations/Panel/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="C3 - List" type="VBoxContainer" parent="Mainframe"]
 layout_mode = 2

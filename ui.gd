@@ -22,11 +22,12 @@ extends MarginContainer
 
 @export_group("List of Tokens")
 @export var token_list: ItemList
+@export var acted_list: ItemList
 
 
 var drawn_token: Token : set = _set_drawn_token
 
-var temp_removed_tokens: Array[Token] = []
+#var temp_removed_tokens: Array[Token] = []
 
 
 
@@ -79,9 +80,9 @@ func add_token_to_bag() -> void:
 func draw_token_from_bag() -> void:
 	if token_list.item_count == 0:
 		return
-	
-	randomize()
-	var i: int = randi_range(0, token_list.item_count - 1)
+	var rng:= RandomNumberGenerator.new()
+	rng.randomize()
+	var i: int = rng.randi_range(0, token_list.item_count - 1)
 	token_list.item_selected.emit(i)
 
 
@@ -90,7 +91,7 @@ func remove_token_from_bag(permanent: bool = false) -> void:
 		return
 	
 	if not permanent:
-		temp_removed_tokens.append(drawn_token)
+		acted_list.add_item(drawn_token.name, drawn_token, false)
 	drawn_token = null
 
 
@@ -110,9 +111,13 @@ func end_round() -> void:
 		shuffle_token_back(drawn_token)
 		drawn_token = null
 	
-	for token in temp_removed_tokens:
+	for index in range(acted_list.item_count):
+		var token: Token = acted_list.get_item_icon(index)
 		shuffle_token_back(token)
-	temp_removed_tokens.clear()
+	
+	for index in range(acted_list.item_count-1, -1, -1):
+		acted_list.remove_item(index)
+
 
 
 

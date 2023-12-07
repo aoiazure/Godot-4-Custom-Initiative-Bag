@@ -1,0 +1,267 @@
+[gd_scene load_steps=10 format=3 uid="uid://dwhg5dcrw2xs6"]
+
+[ext_resource type="Script" path="res://ui.gd" id="1_0xwg2"]
+[ext_resource type="Script" path="res://token.gd" id="2_q3bgi"]
+
+[sub_resource type="Texture2D" id="Texture2D_1g26t"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_q3bgi")
+name = "Runs With Fire"
+details = ""
+
+[sub_resource type="Texture2D" id="Texture2D_i135w"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_q3bgi")
+name = "Archaos"
+details = ""
+
+[sub_resource type="Texture2D" id="Texture2D_64tqo"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_q3bgi")
+name = "Bright"
+details = ""
+
+[sub_resource type="Texture2D" id="Texture2D_dsm5g"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_q3bgi")
+name = "Vega"
+details = ""
+
+[sub_resource type="LabelSettings" id="LabelSettings_kba6i"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_vd07s"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_rj0dr"]
+font_size = 28
+
+[node name="UI" type="MarginContainer" node_paths=PackedStringArray("token_name_label", "token_details_label", "name_field", "quantity_field", "details_field", "add_button", "draw_button", "remove_temp_button", "remove_perm_button", "shuffle_back_button", "end_round_button", "token_list")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("1_0xwg2")
+default_token_list = Array[ExtResource("2_q3bgi")]([SubResource("Texture2D_1g26t"), SubResource("Texture2D_i135w"), SubResource("Texture2D_64tqo"), SubResource("Texture2D_dsm5g")])
+token_name_label = NodePath("Mainframe/C1 - Tokens/Drawn Token/Margin/VBox/VBox/Token Name")
+token_details_label = NodePath("Mainframe/C1 - Tokens/Drawn Token/Margin/VBox/VBox/Token Details")
+name_field = NodePath("Mainframe/C1 - Tokens/Add Token/Margin/VBox/VBox/Name/LineEdit")
+quantity_field = NodePath("Mainframe/C1 - Tokens/Add Token/Margin/VBox/VBox/Quantity/SpinBox")
+details_field = NodePath("Mainframe/C1 - Tokens/Add Token/Margin/VBox/VBox/Additional/TextEdit")
+add_button = NodePath("Mainframe/C1 - Tokens/Add Token/Margin/VBox/VBox/Add Token Button")
+draw_button = NodePath("Mainframe/C2 - Operations/Draw")
+remove_temp_button = NodePath("Mainframe/C2 - Operations/Remove Temp")
+remove_perm_button = NodePath("Mainframe/C2 - Operations/Remove Perm")
+shuffle_back_button = NodePath("Mainframe/C2 - Operations/Shuffle")
+end_round_button = NodePath("Mainframe/C2 - Operations/End Round")
+token_list = NodePath("Mainframe/C3 - List/Panel/Margin/VBox/Token List")
+
+[node name="Mainframe" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="C1 - Tokens" type="VBoxContainer" parent="Mainframe"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="Drawn Token" type="PanelContainer" parent="Mainframe/C1 - Tokens"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Margin" type="MarginContainer" parent="Mainframe/C1 - Tokens/Drawn Token"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="Mainframe/C1 - Tokens/Drawn Token/Margin"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Mainframe/C1 - Tokens/Drawn Token/Margin/VBox"]
+layout_mode = 2
+text = "Drawn Token"
+label_settings = SubResource("LabelSettings_kba6i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Mainframe/C1 - Tokens/Drawn Token/Margin/VBox"]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Mainframe/C1 - Tokens/Drawn Token/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Token Name" type="Label" parent="Mainframe/C1 - Tokens/Drawn Token/Margin/VBox/VBox"]
+layout_mode = 2
+text = "No Token"
+label_settings = SubResource("LabelSettings_vd07s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Token Details" type="Label" parent="Mainframe/C1 - Tokens/Drawn Token/Margin/VBox/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "No Token Details"
+
+[node name="Add Token" type="PanelContainer" parent="Mainframe/C1 - Tokens"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Margin" type="MarginContainer" parent="Mainframe/C1 - Tokens/Add Token"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="Mainframe/C1 - Tokens/Add Token/Margin"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Mainframe/C1 - Tokens/Add Token/Margin/VBox"]
+layout_mode = 2
+text = "Add a New Token"
+label_settings = SubResource("LabelSettings_kba6i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Mainframe/C1 - Tokens/Add Token/Margin/VBox"]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Mainframe/C1 - Tokens/Add Token/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Name" type="HSplitContainer" parent="Mainframe/C1 - Tokens/Add Token/Margin/VBox/VBox"]
+layout_mode = 2
+collapsed = true
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="Mainframe/C1 - Tokens/Add Token/Margin/VBox/VBox/Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Token Name:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Mainframe/C1 - Tokens/Add Token/Margin/VBox/VBox/Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Quantity" type="HSplitContainer" parent="Mainframe/C1 - Tokens/Add Token/Margin/VBox/VBox"]
+layout_mode = 2
+collapsed = true
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="Mainframe/C1 - Tokens/Add Token/Margin/VBox/VBox/Quantity"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quantity:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="Mainframe/C1 - Tokens/Add Token/Margin/VBox/VBox/Quantity"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+custom_arrow_step = 1.0
+
+[node name="Additional" type="VSplitContainer" parent="Mainframe/C1 - Tokens/Add Token/Margin/VBox/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+collapsed = true
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="Mainframe/C1 - Tokens/Add Token/Margin/VBox/VBox/Additional"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Additional Details:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextEdit" type="TextEdit" parent="Mainframe/C1 - Tokens/Add Token/Margin/VBox/VBox/Additional"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+placeholder_text = "Additional details about the token go here."
+
+[node name="Add Token Button" type="Button" parent="Mainframe/C1 - Tokens/Add Token/Margin/VBox/VBox"]
+layout_mode = 2
+disabled = true
+text = "Add Token"
+
+[node name="C2 - Operations" type="VBoxContainer" parent="Mainframe"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Draw" type="Button" parent="Mainframe/C2 - Operations"]
+layout_mode = 2
+text = "Draw Token"
+
+[node name="Remove Temp" type="Button" parent="Mainframe/C2 - Operations"]
+layout_mode = 2
+text = "Remove Until End of Round"
+
+[node name="Remove Perm" type="Button" parent="Mainframe/C2 - Operations"]
+layout_mode = 2
+text = "Remove Permanently"
+
+[node name="Shuffle" type="Button" parent="Mainframe/C2 - Operations"]
+layout_mode = 2
+text = "Shuffle"
+
+[node name="HSeparator" type="Control" parent="Mainframe/C2 - Operations"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="End Round" type="Button" parent="Mainframe/C2 - Operations"]
+layout_mode = 2
+text = "End the Round"
+
+[node name="C3 - List" type="VBoxContainer" parent="Mainframe"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="Panel" type="PanelContainer" parent="Mainframe/C3 - List"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Margin" type="MarginContainer" parent="Mainframe/C3 - List/Panel"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="Mainframe/C3 - List/Panel/Margin"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Mainframe/C3 - List/Panel/Margin/VBox"]
+layout_mode = 2
+text = "List of Tokens"
+label_settings = SubResource("LabelSettings_rj0dr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Mainframe/C3 - List/Panel/Margin/VBox"]
+layout_mode = 2
+
+[node name="Token List" type="ItemList" parent="Mainframe/C3 - List/Panel/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+allow_reselect = true
+same_column_width = true

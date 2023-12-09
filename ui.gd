@@ -74,6 +74,8 @@ func add_token_to_bag() -> void:
 	name_field.clear()
 	details_field.clear()
 	quantity_field.value = 0
+	
+	AudioPlayer.play_sound(AudioPlayer.SFX.add)
 
 
 
@@ -84,6 +86,8 @@ func draw_token_from_bag() -> void:
 	rng.randomize()
 	var i: int = rng.randi_range(0, token_list.item_count - 1)
 	token_list.item_selected.emit(i)
+	
+	AudioPlayer.play_sound(AudioPlayer.SFX.draw)
 
 
 func remove_token_from_bag(permanent: bool = false) -> void:
@@ -92,10 +96,14 @@ func remove_token_from_bag(permanent: bool = false) -> void:
 	
 	if not permanent:
 		acted_list.add_item(drawn_token.name, drawn_token, false)
+		AudioPlayer.play_sound(AudioPlayer.SFX.end_turn)
+	else:
+		AudioPlayer.play_sound(AudioPlayer.SFX.exhaust)
+	
 	drawn_token = null
 
 
-func shuffle_token_back(token: Token = null) -> void:
+func shuffle_token_back(token: Token = null, play_sound: bool = true) -> void:
 	if not token:
 		if not drawn_token:
 			return
@@ -103,6 +111,9 @@ func shuffle_token_back(token: Token = null) -> void:
 			token = drawn_token
 	_add_token_to_list(token)
 	drawn_token = null
+	
+	if play_sound:
+		AudioPlayer.play_sound(AudioPlayer.SFX.shuffle)
 
 
 
@@ -113,10 +124,12 @@ func end_round() -> void:
 	
 	for index in range(acted_list.item_count):
 		var token: Token = acted_list.get_item_icon(index)
-		shuffle_token_back(token)
+		shuffle_token_back(token, false)
 	
 	for index in range(acted_list.item_count-1, -1, -1):
 		acted_list.remove_item(index)
+	
+	AudioPlayer.play_sound(AudioPlayer.SFX.end_round)
 
 
 
@@ -131,6 +144,8 @@ func _select_token(idx: int) -> void:
 	var token: Token = token_list.get_item_icon(idx)
 	drawn_token = token
 	token_list.remove_item(idx)
+	
+	AudioPlayer.play_sound(AudioPlayer.SFX.draw)
 
 func _set_drawn_token(token: Token) -> void:
 	drawn_token = token
